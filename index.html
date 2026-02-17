@@ -191,7 +191,8 @@
       font-weight: 400;
       letter-spacing: 0.35em;
       text-transform: uppercase;
-      color: var(--color-accent-light);
+      color: rgba(250, 245, 238, 0.92);
+      text-shadow: 0 1px 10px rgba(42, 24, 16, 0.6);
       margin-bottom: 1.5rem;
     }
     .hero-title {
@@ -615,6 +616,82 @@
       width: 4px;
       background: linear-gradient(to bottom, var(--color-accent), var(--color-accent-light), var(--color-olive));
     }
+
+    /* ── Mobile Page System & Bottom Navigation ── */
+    #bottom-nav { display: none; }
+
+    @media (max-width: 768px) {
+      /* Suppress hamburger/dropdown — bottom nav takes over */
+      .hamburger        { display: none !important; }
+      #nav-links        { display: none !important; }
+
+      /* Extra body space so content clears the fixed bottom nav */
+      body { padding-bottom: 64px; }
+
+      /* Hero — subtract top navbar (68px) + bottom nav (64px) */
+      #hero { height: calc(100vh - 132px); min-height: 400px; }
+
+      /* Page sections: only the active one is shown */
+      .page-section        { display: none; }
+      .page-section.active { display: block; }
+
+      /* ── Bottom navigation bar ── */
+      #bottom-nav {
+        display: flex;
+        position: fixed;
+        bottom: 0; left: 0; right: 0;
+        height: 64px;
+        background: rgba(247, 240, 230, 0.97);
+        backdrop-filter: blur(14px);
+        -webkit-backdrop-filter: blur(14px);
+        border-top: 1px solid var(--color-border);
+        z-index: 1000;
+        justify-content: space-around;
+        align-items: stretch;
+      }
+      .bottom-nav-btn {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 3px;
+        background: none;
+        border: none;
+        cursor: pointer;
+        color: var(--color-text-muted);
+        font-family: var(--font-body);
+        font-size: 0.6rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        padding: 8px 4px;
+        transition: color var(--transition);
+        position: relative;
+      }
+      .bottom-nav-btn::after {
+        content: '';
+        position: absolute;
+        top: 0; left: 22%; right: 22%;
+        height: 2px;
+        background: var(--color-accent);
+        border-radius: 0 0 2px 2px;
+        opacity: 0;
+        transition: opacity var(--transition);
+      }
+      .bottom-nav-btn.active         { color: var(--color-accent); }
+      .bottom-nav-btn.active::after  { opacity: 1; }
+      .bottom-nav-btn svg {
+        width: 20px; height: 20px;
+        stroke: currentColor;
+        fill: none;
+        stroke-width: 1.5;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+
+      /* Tighten section padding on mobile */
+      .section-inner { padding: 3.5rem 1.25rem; }
+    }
   </style>
 </head>
 <body>
@@ -635,11 +712,14 @@
     </ul>
   </nav>
 
+  <!-- Page: Início (hero + intro) -->
+  <div class="page-section" id="page-inicio">
+
   <!-- Hero -->
   <section id="hero" aria-label="Apresentação do projeto">
     <div class="hero-bg"></div>
     <div class="hero-content" id="hero-content">
-      <p class="hero-pre-title">Paisagismo Residencial · 2025</p>
+      <p class="hero-pre-title">Paisagismo Residencial · 2026</p>
       <h1 class="hero-title">JULIANA<br><em>&amp;</em> JASMIN</h1>
       <p class="hero-subtitle">Projeto de Paisagismo Residencial</p>
       <div class="hero-divider"></div>
@@ -691,6 +771,11 @@
     </div>
   </section>
 
+  </div><!-- /page-inicio -->
+
+  <!-- Page: Espécies Selecionadas -->
+  <div class="page-section" id="page-especies">
+
   <!-- Espécies -->
   <section id="especies" aria-labelledby="especies-title">
     <div class="section-inner">
@@ -704,6 +789,11 @@
       </div>
     </div>
   </section>
+
+  </div><!-- /page-especies -->
+
+  <!-- Page: Visualizações 3D -->
+  <div class="page-section" id="page-renders">
 
   <!-- Visualizações 3D -->
   <section id="renders" aria-labelledby="renders-title">
@@ -731,8 +821,37 @@
       <strong>Paisagismo:</strong> Paulo Perissoto<br>
       <strong>Visualizações 3D:</strong> Lucas Nakamura Cerejo
     </p>
-    <p class="footer-copy">© 2025 — Todos os direitos reservados</p>
+    <p class="footer-copy">© 2026 — Todos os direitos reservados</p>
   </footer>
+
+  </div><!-- /page-renders -->
+
+  <!-- Mobile Bottom Navigation -->
+  <nav id="bottom-nav" role="navigation" aria-label="Navegação por seção">
+    <button class="bottom-nav-btn active" data-page="inicio" aria-label="Início">
+      <svg viewBox="0 0 24 24">
+        <path d="M3 9.5L12 3l9 6.5V20a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V9.5z"/>
+        <path d="M9 21V12h6v9"/>
+      </svg>
+      <span>Início</span>
+    </button>
+    <button class="bottom-nav-btn" data-page="renders" aria-label="Visualizações 3D">
+      <svg viewBox="0 0 24 24">
+        <rect x="3" y="3" width="18" height="18" rx="2"/>
+        <circle cx="8.5" cy="8.5" r="1.5"/>
+        <path d="M21 15l-5-5L5 21"/>
+      </svg>
+      <span>Renders</span>
+    </button>
+    <button class="bottom-nav-btn" data-page="especies" aria-label="Espécies">
+      <svg viewBox="0 0 24 24">
+        <path d="M12 22V12"/>
+        <path d="M12 12C12 7 7 4 3 6c4 1 7 4 9 6"/>
+        <path d="M12 12c0-5 5-8 9-6-4 1-7 4-9 6"/>
+      </svg>
+      <span>Espécies</span>
+    </button>
+  </nav>
 
   <!-- Lightbox -->
   <div id="lightbox" role="dialog" aria-label="Visualização de imagem" aria-modal="true">
@@ -1132,6 +1251,44 @@
         navLinks.classList.remove('open');
         hamburger.classList.remove('open');
         hamburger.setAttribute('aria-expanded', 'false');
+      });
+    });
+
+    /* ─── Mobile Page Navigation ─── */
+    const mobilePages = {
+      inicio:   document.getElementById('page-inicio'),
+      renders:  document.getElementById('page-renders'),
+      especies: document.getElementById('page-especies')
+    };
+    const bottomNavBtns = document.querySelectorAll('.bottom-nav-btn');
+
+    // Activate the landing page on load
+    mobilePages.inicio.classList.add('active');
+    let currentPage = 'inicio';
+
+    bottomNavBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const pageId = btn.dataset.page;
+        if (pageId === currentPage) return;
+
+        // Deactivate current page
+        mobilePages[currentPage].classList.remove('active');
+        bottomNavBtns.forEach(b => b.classList.remove('active'));
+
+        // Activate new page
+        mobilePages[pageId].classList.add('active');
+        btn.classList.add('active');
+        currentPage = pageId;
+
+        // Scroll to top of page
+        window.scrollTo({ top: 0, behavior: 'instant' });
+
+        // Trigger fade-in animations for newly revealed elements
+        setTimeout(() => {
+          mobilePages[pageId].querySelectorAll('.fade-in').forEach(el => {
+            el.classList.add('visible');
+          });
+        }, 80);
       });
     });
 
