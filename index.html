@@ -607,6 +607,9 @@
       color: rgba(250, 245, 238, 0.3);
     }
 
+    /* ── Anchor offset — keep headings clear of the fixed 68px navbar ── */
+    #introducao, #especies, #renders { scroll-margin-top: 80px; }
+
     /* ── Side border gradient decoration ── */
     #especies::before,
     #renders::before {
@@ -689,8 +692,8 @@
         stroke-linejoin: round;
       }
 
-      /* Tighten section padding on mobile */
-      .section-inner { padding: 3.5rem 1.25rem; }
+      /* Tighten section padding on mobile; top must clear the fixed 68px navbar */
+      .section-inner { padding: 5.5rem 1.25rem 3rem; }
     }
   </style>
 </head>
@@ -990,14 +993,6 @@
         img: 'public/images/species/xanadu.webp'
       },
       {
-        name: 'Monstera Pinnatipartita',
-        sci: 'Monstera pinnatipartita',
-        desc: 'Folhagem fenestrada espetacular em 5,4m². Espaçamento 60–80cm. Destaque nos canteiros de fundos.',
-        qty: '6–8 mudas',
-        location: 'Fundos',
-        img: 'public/images/species/monstera_pinnatipartita.webp'
-      },
-      {
         name: 'Dracena Reflexa Variegata',
         sci: 'Dracaena reflexa',
         desc: 'Folhagem variegada linear ao longo do muro. 10,50m de extensão, espaçamento 60–70cm. Efeito de cortina vegetal.',
@@ -1020,102 +1015,6 @@
         qty: '8–10 mudas',
         location: 'Fundos',
         img: 'public/images/species/maranta_charuto.webp'
-      },
-      {
-        name: 'Palmeira Areca Bambu',
-        sci: 'Dypsis lutescens',
-        desc: 'Palmeira de touceira elegante, folhagem fina e tropical. Excelente para composições de porte médio.',
-        qty: 'Conforme projeto',
-        location: 'Fundos',
-        img: 'public/images/species/palmeira_areca_bambu.webp'
-      },
-      {
-        name: 'Jabuticabeira',
-        sci: 'Plinia cauliflora',
-        desc: 'Árvore frutífera ornamental de grande beleza. Casca acinzentada e frutos diretamente no tronco. Ponto focal nobre.',
-        qty: 'Conforme projeto',
-        location: 'Fundos',
-        img: 'public/images/species/arvore_jabuticabeira.webp'
-      },
-      {
-        name: 'Acácia de Seyal',
-        sci: 'Vachellia seyal',
-        desc: 'Árvore de porte elegante com floração amarela e copa aberta. Confere verticalidade e sombra ao projeto.',
-        qty: 'Conforme projeto',
-        location: 'Complementar',
-        img: 'public/images/species/arvore_acacia_seyal.webp'
-      },
-      {
-        name: 'Tataré',
-        sci: 'Chloroleucon tortum',
-        desc: 'Árvore nativa ornamental de galhos tortuosos e copa elegante. Destaque escultural no jardim.',
-        qty: 'Conforme projeto',
-        location: 'Complementar',
-        img: 'public/images/species/arvore_tatare.webp'
-      },
-      {
-        name: 'Coccoloba Uvifera',
-        sci: 'Coccoloba uvifera',
-        desc: 'Planta de folhagem circular e textura marcante. Resistente ao calor, ideal para ambientes costeiros e ensolarados.',
-        qty: 'Conforme projeto',
-        location: 'Complementar',
-        img: 'public/images/species/coccoloba_uvifera.webp'
-      },
-      {
-        name: 'Geniparana',
-        sci: 'Gustavia augusta',
-        desc: 'Árvore de floração exuberante e perfumada. Folhas longas e brilhantes conferem aspecto exótico ao jardim tropical.',
-        qty: 'Conforme projeto',
-        location: 'Complementar',
-        img: 'public/images/species/geniparana.webp'
-      },
-      {
-        name: 'Monstera Deliciosa',
-        sci: 'Monstera deliciosa',
-        desc: 'Ícone do paisagismo tropical, folhagem fenestrada de grande apelo estético. Enriquece composições de meia-sombra.',
-        qty: 'Conforme projeto',
-        location: 'Complementar',
-        img: 'public/images/species/monstera_deliciosa.webp'
-      },
-      {
-        name: 'Chamaedorea',
-        sci: 'Chamaedorea seifrizii',
-        desc: 'Palmeira de pequeno porte ideal para meia-sombra. Crescimento em touceira, delicada e elegante.',
-        qty: 'Conforme projeto',
-        location: 'Complementar',
-        img: 'public/images/species/palmeira_chameodora.webp'
-      },
-      {
-        name: 'Palmeira Elegance',
-        sci: 'Howea forsteriana',
-        desc: 'Palmeira de porte nobre e copa arqueada. Um dos símbolos do paisagismo sofisticado em áreas tropicais.',
-        qty: 'Conforme projeto',
-        location: 'Complementar',
-        img: 'public/images/species/palmeira_elegance.webp'
-      },
-      {
-        name: 'Jerivá',
-        sci: 'Syagrus romanzoffiana',
-        desc: 'Palmeira nativa brasileira de grande porte e copa plumosa. Âncora visual de destaque no jardim.',
-        qty: 'Conforme projeto',
-        location: 'Complementar',
-        img: 'public/images/species/palmeira_jeriva.webp'
-      },
-      {
-        name: 'Samambaia',
-        sci: 'Nephrolepis exaltata',
-        desc: 'Clássica forragem de meia-sombra, folhagem plumosa e exuberante. Ideal para composições em canteiros protegidos.',
-        qty: 'Conforme projeto',
-        location: 'Complementar',
-        img: 'public/images/species/samambaia.webp'
-      },
-      {
-        name: 'Zamia',
-        sci: 'Zamia furfuracea',
-        desc: 'Cícade ornamental de folhagem rígida e arqueada. Aspecto pré-histórico e presença marcante. Muito resistente.',
-        qty: 'Conforme projeto',
-        location: 'Complementar',
-        img: 'public/images/species/zamia.webp'
       },
     ];
 
